@@ -2,6 +2,7 @@ import express from 'express'
 import cors from 'cors'
 import path from 'path'
 import favicon from 'express-favicon'
+import request from 'request'
 
 const PORT = process.env.PORT || 8000;
 
@@ -14,6 +15,10 @@ app.use(cors({origin: true, credentials: true}));
 
 app.get('/ping', function (req, res) {
   return res.send('pong');
+});
+
+app.use('/api', function(req, res) {
+  req.pipe(request(req.url)).pipe(res);
 });
 
 app.get('/', function (req, res) {
