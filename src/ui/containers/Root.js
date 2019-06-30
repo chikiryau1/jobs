@@ -44,10 +44,11 @@ class Root extends Component {
           ? <Error error={error.message}/>
           : null
       }
-      <Container>
+      <Container column>
         <Form
           onSubmit={this.onSubmit}
         />
+        {items || fetching ? <Pagination numOfPages={5} onPageChange={this.onPageChange} activePage={(page || 0) + 1}/> : null}
       </Container>
       {
         fetching
@@ -56,7 +57,7 @@ class Root extends Component {
           </Loader>
           : items && <List data={items}/>
       }
-      {items || fetching ? <Pagination numOfPages={5} onPageChange={this.onPageChange} activePage={(page || 0) + 1}/> : null}
+      {items ? <Pagination numOfPages={5} onPageChange={this.onPageChange} activePage={(page || 0) + 1}/> : null}
     </>
   }
 }

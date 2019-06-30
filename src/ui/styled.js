@@ -9,5 +9,7 @@ export const Container = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
+  flex-direction: ${p => p.column ? 'column' : 'row'};
+  align-items: center;
   padding: 30px;
 `;
