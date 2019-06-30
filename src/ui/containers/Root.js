@@ -8,9 +8,8 @@ import {Loader} from 'semantic-ui-react'
 
 class Root extends Component {
 
-  onSubmit = e => {
-    e.preventDefault();
-    getJobsList({description: e.target.description.value})
+  onSubmit = params => {
+    getJobsList(params)
   };
 
   render () {
@@ -30,7 +29,6 @@ class Root extends Component {
       <Container>
         <Form
           onSubmit={this.onSubmit}
-          onChange={Function.prototype}
         />
       </Container>
       {

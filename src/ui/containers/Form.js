@@ -1,9 +1,12 @@
 import React, {Component} from 'react'
+import {connect} from 'react-redux'
+
+import {getJobsList, onChange} from '../../model/actions'
 import {Container, StyledForm} from '../styled'
 import {Input} from '../primitives'
 import { Button } from 'semantic-ui-react'
 
-export default class Form extends Component {
+class Form extends Component {
 
   constructor(props) {
     super(props);
@@ -15,35 +18,58 @@ export default class Form extends Component {
   }
 
   onChange = e => {
-    const {
-      onChange,
-    } = this.props;
     const value = e.target.value;
+    const name = e.target.name || 'name';
     let error;
     if (value){
       const match = this.restriction.exec(value);
-      error = match && match[0].length !== value.length
+      error = !match || match[0].length !== value.length
     }
-    this.setState({value, error: error});
-    onChange(e)
+    onChange(
+      {
+        [name]: value,
+        errors: {
+          [name]: error,
+        }
+      })
+  };
+
+  onSubmit = e => {
+    const {
+      onSubmit,
+      form
+    } = this.props;
+    e.preventDefault();
+
+    const { errors, ...values } = form;
+
+    onSubmit(values)
+  };
+
+  isSubmitDisabled = () => {
+    const {
+      form
+    } = this.props;
+    return (form.errors && form.errors.description) || !form.description || form.description === ''
   };
 
   render() {
     const {
-      onSubmit
+      form
     } = this.props;
-    return <StyledForm onSubmit={onSubmit}>
+    return <StyledForm onSubmit={this.onSubmit}>
       <Container>
         <Input
           name='description'
-          value={this.state.value}
+          value={form.description || ''}
           onChange={this.onChange}
-          error={this.state.error}
+          error={form.errors && form.errors.description}
           placeholder='enter search query'
         />
-        <Button type='submit' primary disabled={this.state.error || this.state.value === ''}>Find</Button>
+        <Button type='submit' primary disabled={this.isSubmitDisabled()}>Find</Button>
       </Container>
     </StyledForm>
   }
 }
 
+export default connect(({form}) => ({form}))(Form)

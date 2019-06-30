@@ -1,7 +1,7 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 import logger from 'redux-logger'
-import { jobList, job } from './reducers'
+import { jobList, job, form } from './reducers'
 
 const middleware = process.env.NODE_ENV === 'production' ? [thunk] : [thunk, logger];
 
@@ -13,12 +13,18 @@ const init = {
   job: {
     fetching: false,
     error: null
+  },
+  form: {
+    errors: {
+
+    }
   }
 };
 
 const reducer = combineReducers({
   jobList,
-  job
+  job,
+  form
 });
 
 const store = createStore(reducer, init, applyMiddleware(...middleware));
