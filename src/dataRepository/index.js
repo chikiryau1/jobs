@@ -21,11 +21,19 @@ function get (url) {
 }
 
 
+function formatData(data) {
+  const { created_at } = data;
+  data.created_at = new Date(created_at).toDateString();
+  return data
+}
+
 export function getJobsList(...args) {
   return get(`${PATH}.json?${serialize(...args)}`, ...args)
+    .then(formatData)
 }
 
 export function getJob(id) {
   return get(`${PATH}/${id}.json`)
+    .then(formatData)
 }
 

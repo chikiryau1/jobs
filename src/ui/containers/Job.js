@@ -6,7 +6,7 @@ import {getJob} from '../../model/actions'
 import {Loader} from 'semantic-ui-react'
 
 import {Container} from '../styled'
-import {Error} from "../components";
+import {Error, Details} from "../components";
 
 const ButtonWrapper = styled.div`
   position: absolute;
@@ -54,7 +54,7 @@ class Job extends PureComponent {
       <Wrap>
         {fetching
           ? <Loader active inline='centered'/>
-          : <>{id}</>
+          : job ? <Details item={job}/> : null
         }
       </Wrap>
     </Container>

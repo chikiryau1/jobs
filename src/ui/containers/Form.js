@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 
-import {getJobsList, onChange} from '../../model/actions'
+import {onChange} from '../../model/actions'
 import {Container, StyledForm} from '../styled'
 import {Input} from '../primitives'
 import { Button } from 'semantic-ui-react'
