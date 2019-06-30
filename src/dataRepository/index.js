@@ -28,6 +28,7 @@ function formatData(data) {
 }
 
 export function getJobsList(...args) {
+  console.log(...args);
   return get(`${PATH}.json?${serialize(...args)}`, ...args)
     .then(formatData)
 }
