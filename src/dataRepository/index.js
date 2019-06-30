@@ -29,14 +29,14 @@ function formatData(data) {
 }
 
 export function getJobsList(...args) {
-  return get(`${URL}?url=${PATH}.json?${serialize(...args)}`, ...args)
+  return get(`${PATH}?directUrl=${URL}.json?${serialize(...args)}`, ...args)
     .then(data => {
       return data.map(formatData)
     })
 }
 
 export function getJob(id) {
-  return get(`${URL}?url=${PATH}/${id}.json`)
+  return get(`${PATH}?directUrl=${URL}/${id}.json`)
     .then(formatData)
 }
 
