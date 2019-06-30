@@ -1,4 +1,5 @@
 const PATH = process.env.REACT_APP_PATH;
+const URL = process.env.REACT_APP_URL;
 
 const serialize = obj => Object.keys(obj).map(key => encodeURIComponent(key) + '=' + encodeURIComponent(obj[key])).join('&');
 
@@ -28,14 +29,14 @@ function formatData(data) {
 }
 
 export function getJobsList(...args) {
-  return get(`${PATH}.json?${serialize(...args)}`, ...args)
+  return get(`${URL}?url=${PATH}.json?${serialize(...args)}`, ...args)
     .then(data => {
       return data.map(formatData)
     })
 }
 
 export function getJob(id) {
-  return get(`${PATH}/${id}.json`)
+  return get(`${URL}?url=${PATH}/${id}.json`)
     .then(formatData)
 }
 
