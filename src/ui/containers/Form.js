@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 
-import {onChange} from '../../model/actions'
+import {onChange, reset} from '../../model/actions'
 import {Container, StyledForm} from '../styled'
 import {Input} from '../primitives'
 import { Button } from 'semantic-ui-react'
@@ -46,6 +46,11 @@ class Form extends Component {
     onSubmit(values)
   };
 
+  reset = e => {
+    e.preventDefault();
+    reset()
+  };
+
   isSubmitDisabled = () => {
     const {
       form
@@ -67,6 +72,7 @@ class Form extends Component {
           placeholder='enter search query'
         />
         <Button type='submit' primary disabled={this.isSubmitDisabled()}>Find</Button>
+        <Button onClick={this.reset}>reset</Button>
       </Container>
     </StyledForm>
   }
