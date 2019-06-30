@@ -15,7 +15,7 @@ class Root extends Component {
 
   render () {
     const {
-      data: {
+      jobList: {
         error,
         fetching,
         items
@@ -44,4 +44,4 @@ class Root extends Component {
   }
 }
 
-export default connect(({data}) => ({data}))(Root)
+export default connect(({jobList}) => ({jobList}))(Root)

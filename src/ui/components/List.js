@@ -1,6 +1,11 @@
 import React, {PureComponent} from 'react'
 import {Item as ListItem} from '../primitives/ListItem'
 import {Item} from 'semantic-ui-react'
+import styled from "styled-components";
+
+const Wrap = styled(Item.Group)`
+  padding: 0 30px;
+`;
 
 export default class List extends PureComponent {
   render() {
@@ -8,11 +13,11 @@ export default class List extends PureComponent {
       data
     } = this.props;
     return data
-      ? <Item.Group divided>
+      ? <Wrap divided>
         {
           data.map(item => <ListItem key={item.id} {...item}/>)
         }
-      </Item.Group>
+      </Wrap>
       : 'No jobs found'
   }
 }

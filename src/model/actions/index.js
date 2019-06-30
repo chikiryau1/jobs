@@ -1,3 +1,4 @@
-import {getJobsList} from "./data";
+import {getJobsList} from './jobList';
+import {getJob} from './job';
 
-export {getJobsList}
+export {getJobsList, getJob}

@@ -1,3 +1,4 @@
-import data from './data'
+import jobList from './jobList'
+import job from './job'
 
-export { data } 
+export { jobList, job }

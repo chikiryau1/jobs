@@ -2,14 +2,14 @@ const PATH = process.env.REACT_APP_PATH;
 
 const serialize = obj => Object.keys(obj).map(key => encodeURIComponent(key) + '=' + encodeURIComponent(obj[key])).join('&');
 
-function get (url, ...params) {
+function get (url) {
   console.log('GET', url);
 
   const GET = {
     method: 'GET'
   };
 
-  return fetch(`${url}?${serialize(...params)}`, GET)
+  return fetch(url, GET)
     .then(res => {
       console.log(res);
       return res.json()
@@ -20,9 +20,12 @@ function get (url, ...params) {
     })
 }
 
-export default class Data {
-  getJobsList (...args) {
-    // return get('https://jobs.github.com/positions.json', ...args)
-    return get(PATH, ...args)
-  }
+
+export function getJobsList(...args) {
+  return get(`${PATH}.json?${serialize(...args)}`, ...args)
 }
+
+export function getJob(id) {
+  return get(`${PATH}/${id}.json`)
+}
+
