@@ -28,7 +28,7 @@ export default class Details extends PureComponent {
           <Card>
             <Image src={company_logo || noImage} wrapped ui={false}/>
             <Card.Content>
-              <Card.Header><a rel='noopener noreferrer' href={company_url}>{company}</a></Card.Header>
+              <Card.Header><a target='_blank' rel='noopener noreferrer' href={company_url}>{company}</a></Card.Header>
               <Card.Meta>{location}</Card.Meta>
               <Card.Meta>{created_at}</Card.Meta>
               <Card.Description>
@@ -38,7 +38,7 @@ export default class Details extends PureComponent {
               </Card.Description>
             </Card.Content>
             <Card.Content extra>
-              <a href={url} rel='noopener noreferrer'>
+              <a href={url} target='_blank' rel='noopener noreferrer'>
                 Link to apply
               </a>
             </Card.Content>

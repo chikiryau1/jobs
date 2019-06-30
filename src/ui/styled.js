@@ -10,6 +10,6 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: ${p => p.column ? 'column' : 'row'};
-  align-items: center;
+  align-items: ${p => p.column ? 'center' : 'flex-start'};
   padding: 30px;
 `;

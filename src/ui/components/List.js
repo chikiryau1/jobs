@@ -12,7 +12,7 @@ export default class List extends PureComponent {
     const {
       data
     } = this.props;
-    return data
+    return data.length > 0
       ? <Wrap divided>
         {
           data.map(item => <ListItem key={item.id} {...item}/>)

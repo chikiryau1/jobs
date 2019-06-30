@@ -15,8 +15,8 @@ const StyledContent = styled(ItemUi.Content)`
   margin-left: 20px;
 `;
 
-export const Item = ({title, id, company_logo, location, created_at, company}) => {
-  return <ItemUi>
+export const Item = ({title, id, company_logo, location, created_at, company}) => (
+  <ItemUi>
     <SLink to={id}>
       <ItemUi.Image size='tiny' src={company_logo || noImage}/>
       <StyledContent>
@@ -26,4 +26,4 @@ export const Item = ({title, id, company_logo, location, created_at, company}) =
       </StyledContent>
     </SLink>
   </ItemUi>
-};
+);

@@ -33,9 +33,6 @@ class Job extends PureComponent {
 
   render() {
     const {
-      id
-    } = this.props.match.params;
-    const {
       job: {
         fetching,
         error,
