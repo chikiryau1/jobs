@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { createGlobalStyle } from 'styled-components'
-
+import 'semantic-ui-css/semantic.min.css'
 import App from './App'
 
 const GlobalStyle = createGlobalStyle`

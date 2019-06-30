@@ -15,6 +15,10 @@ export const StyledInput = styled.input`
   font-size: 16px;
   border: none;
   border-bottom: 2px solid ${props => props.error ? 'red' : '#666'} 
+  
+  :focus{
+    border-bottom: 2px solid ${props => props.error ? 'red' : '#1678C2'};
+  }
 `;
 
 export const ErrorText = styled.div`
@@ -24,7 +28,7 @@ export const ErrorText = styled.div`
   bottom: -18px;
 `;
 
-export const Input = props => {
+export default props => {
   return <InputContainer>
     <StyledInput {...props} />
     <ErrorText>{props.error}</ErrorText>

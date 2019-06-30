@@ -8,7 +8,7 @@ const middleware = process.env.NODE_ENV === 'production' ? [thunk] : [thunk, log
 const init = {
   data: {
     fetching: false,
-    initializing: false
+    error: null
   }
 };
 

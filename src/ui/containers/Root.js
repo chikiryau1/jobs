@@ -1,21 +1,47 @@
 import React, { Component } from 'react'
+import {connect} from 'react-redux'
 import {getJobsList} from '../../model/actions'
 import Form from './Form'
 import { Container } from '../styled'
+import {Error, List} from '../components'
+import {Loader} from 'semantic-ui-react'
 
-export default class Root extends Component {
-  constructor(props){
-    super(props);
-    getJobsList({})
-  }
+class Root extends Component {
+
+  onSubmit = e => {
+    e.preventDefault();
+    getJobsList({description: e.target.description.value})
+  };
+
   render () {
+    const {
+      data: {
+        error,
+        fetching,
+        items
+      }
+    } = this.props;
     return <>
+      {
+        error
+          ? <Error error={error.message}/>
+          : null
+      }
       <Container>
         <Form
-          onSubmit={Function.prototype}
+          onSubmit={this.onSubmit}
           onChange={Function.prototype}
         />
       </Container>
+      {
+        fetching
+          ? <Loader active inline='centered'>
+            Fetching
+          </Loader>
+          : <List data={items}/>
+      }
     </>
   }
 }
+
+export default connect(({data}) => ({data}))(Root)
