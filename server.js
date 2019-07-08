@@ -18,7 +18,7 @@ app.get('/ping', function (req, res) {
 });
 
 app.use('/api', function(req, res) {
-  req.pipe(request(req.url)).pipe(res);
+  req.pipe(request(req.query.directUrl)).pipe(res);
 });
 
 app.get('/tripData', (req, res) => {
