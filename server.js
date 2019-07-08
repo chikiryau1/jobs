@@ -25,6 +25,11 @@ app.get('/tripData', (req, res) => {
   res.status(200).sendFile(path.join(__dirname, 'build', 'data.json'))
 });
 
+const key = 'AIzaSyDS5nV5nNisxsr_kWTu-p8Lay7rfialZHw';
+app.get('/tripData/map', (req, res) => {
+  req.pipe(request(`https://maps.googleapis.com/maps/api/js?key=${key}&libraries=drawing&language=en&region=EG`)).pipe(res);
+});
+
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
