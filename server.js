@@ -21,6 +21,10 @@ app.use('/api', function(req, res) {
   req.pipe(request(req.url)).pipe(res);
 });
 
+app.get('/tripData', (req, res) => {
+  res.status(200).sendFile(path.join(__dirname, 'build', 'data.json'))
+});
+
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
